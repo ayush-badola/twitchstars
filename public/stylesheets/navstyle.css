@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+}
+.navul{
+    list-style: none;
+    display: block;
+    padding: 2vh;
+    background-color: black;
+    margin: 0;
+}
+.navul li{
+    display: inline-block;
+    margin-right: 2vh;
+}
+.navul a{
+    font-family: "Danfo", serif;
+    font-optical-sizing: auto;
+    font-weight:lighter;
+    font-style:normal;
+    font-variation-settings:
+    "ELSH" 0;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    padding: 2vh;
+    border-radius: 1vh;
+}
+.rig{
+    float: right;
+}
+.rig a{
+    font-size: 3.5vh;
+    transition: ease-in 0.2s;
+}
+.rig a:hover{
+    background-color: white;
+    color: black;
+    transition: ease-in 0.2s;
+    padding: 2vh;
+}
+.lef{
+    font-size: 4vh;
+}

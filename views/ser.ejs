@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Danfo&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/navstyle.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/serfeedstyle.css">
 </head>
 <body>
     <%- include("nav") %>
-    <form id="uplo" action="/upload" method="post" enctype="multipart/form-data">
-        <input name="picture" type="file" id="uploadpic">
-        <input name="tags" type="text" id="uploatag">
-        <button type="submit">Upload</button>
-    </form>
+    <div class="serfeed">
+        <% pictures.forEach(pics => {%>
+            <div class="inpic">
+                <img src="/uploads/<%= pics.filename %>" alt="Uploaded pics">
+            </div>
+        <% }) %>
+    </div>
 </body>
 </html>

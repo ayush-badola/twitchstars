@@ -23,7 +23,7 @@ const upload = multer({storage : storage});
 
 
 router.get('/', function(req, res, next) {
-  res.send("Twitch Stars - Home Page");
+  res.render("index");
 });
 
 
@@ -105,7 +105,7 @@ router.get("/upload", isLoggedIn, function (req, res){
 router.post("/upload", isLoggedIn, upload.single('picture'), async function(req, res) {
 try{
   //const newpic = '/uploads/' + req.file.filename;
-  const newpics = new pics({filename : req.file.filename});
+  const newpics = new pics({filename : req.file.filename, tags : req.body.tags.split(",").map(tag => tag.trim().toLowerCase())});
   await newpics.save();
   res.send("Uploaded successfully");
 }catch(err){
@@ -136,6 +136,21 @@ catch(err){
     //res.send("Feed");
   });
 
+
+
+
+router.get("/search", isLoggedIn, async function (req, res){
+  try{
+
+    const tagser = req.query.tagser?.split(",").map(tag => tag.trim().toLowerCase());
+    const pictures = await pics.find({tags: { $regex: new RegExp(tagser, 'i') }});
+    res.render("ser", {pictures: pictures})
+  }
+  catch(err){
+    console.error("Error in searching and displaying", err);
+    res.status(500).send("Internal Server Error");
+  }
+})
 
 
 

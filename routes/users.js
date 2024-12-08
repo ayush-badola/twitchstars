@@ -26,6 +26,7 @@ const user_schema = mongoose.Schema ({
 const pictureSchema = mongoose.Schema({
   filename: String,
   uploadedAt: { type: Date, default: Date.now },
+  tags: { type: [String], required: true }
 });
 
 

@@ -4,9 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Danfo&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/navstyle.css">
     <link rel="stylesheet" href="/stylesheets/feedstyle.css">
 </head>
 <body>
+    <%- include("nav") %>
+    <div class="sear">
+        <form action="/search" method="get" class="searfor">
+            <input name="tagser" type="text" placeholder="Tags">
+            <button type="submit">SUBMIT</button>
+        </form>
+    </div>
     <div class="feed">
         <% pictures.forEach(pics => {%>
             <div class="inpic">
