@@ -1,7 +1,9 @@
 .feed {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
+    gap: 20px;
+    margin-left: 3vh;
+    margin-right: 3vh;
 }
 .feed img {
     width: 100%;

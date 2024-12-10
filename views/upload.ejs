@@ -4,17 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Danfo&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/stylesheets/navstyle.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Danfo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/navstyle.css">
+    <link rel="stylesheet" href="/stylesheets/uploadstyle.css">
     <title>Document</title>
 </head>
 <body>
     <%- include("nav") %>
-    <form id="uplo" action="/upload" method="post" enctype="multipart/form-data">
+    <!--<form id="uplo" action="/upload" method="post" enctype="multipart/form-data">
         <input name="picture" type="file" id="uploadpic">
         <input name="tags" type="text" id="uploatag">
         <button type="submit">Upload</button>
+    </form>-->
+    <div class="containerwrapper">
+    <form action="/upload" method="post" enctype="multipart/form-data" class="container">
+        <h1>Hey <%= name%>!</h1>
+        <br>
+        <br>
+        <br>
+        <ul>
+            <li>- Remeber, the pictures you upload will be visible to anyone and everyone.</li>
+            <br>
+            <li>- Make sure to add related tags for each picture</li>
+            <br>
+            <li>- You can upload only one picture at a time.</li>
+            <br>
+            <li>- If you want to upload more, upload every pic seperately.</li>
+            <br>
+            <br>
+            <br>
+        </ul>
+        <label class="upload-label" for="fileInput">Choose Image</label>
+        <input type="file" id="fileInput" accept="image/*" name="picture" required>
+        <div id="preview"></div>
     </form>
+</div>
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const previewContainer = document.getElementById('preview');
+        const uploadLabel = document.querySelector('.upload-label');
+
+        // Handle file input change
+        fileInput.addEventListener('change', () => {
+            const files = fileInput.files;
+            previewContainer.innerHTML = ''; // Clear previous previews
+
+            Array.from(files).forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        // Create preview container
+                        const previewDiv = document.createElement('div');
+                        previewDiv.className = 'image-preview';
+
+                        // Create image element
+                        const img = document.createElement('img');
+                        img.src = reader.result;
+
+                        // Create delete button
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = '×';
+                        deleteButton.addEventListener('click', () => {
+                            previewDiv.remove();
+                            const tagsSection = document.querySelector('.tagsSection');
+                            tagsSection.style.display = 'none';
+                    submitButtonSection.style.display = 'none';
+                    fileInput.value = ''; // Reset file input
+                    uploadLabel.style.display = 'inline-block';
+                        });
+
+                        // Append elements
+                        previewDiv.appendChild(img);
+                        previewDiv.appendChild(deleteButton);
+                        previewContainer.appendChild(previewDiv);
+
+                        const tagsSection = document.createElement('div');
+                        tagsSection.classList.add('tagsSection');
+
+                        const tagsLabel = document.createElement('label');
+                        tagsLabel.textContent = "Add Tags: (Separate the tags by a comma ',')";
+                        tagsLabel.setAttribute('for', 'tagsInput');
+                        tagsLabel.classList.add("tagsLabel");
+
+                        const tagsInput = document.createElement('input');
+                        tagsInput.type = 'text';
+                        tagsInput.id = 'tagsInput';
+                        tagsInput.name = 'tags';
+                        tagsInput.required = true;
+                        tagsInput.placeholder = 'tag1, tag2, tag3, tag4';
+                        tagsInput.classList.add("tagsInput");
+
+                        // Append tags section
+                        previewContainer.after(tagsSection);
+                        tagsSection.appendChild(tagsLabel);
+                        tagsSection.appendChild(tagsInput);
+
+                        // Add submit button
+                        const submitButtonSection = document.createElement('div');
+                        const submitButton = document.createElement('button');
+                        submitButton.type = 'submit';
+                        submitButton.textContent = 'Submit';
+                        submitButton.classList.add("submitButton");
+                        submitButtonSection.appendChild(submitButton);
+                        tagsSection.after(submitButtonSection); // Append the submit button after tags section
+
+                        // Hide the upload label after image is uploaded
+                        uploadLabel.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file); // Read file as Data URL
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -3,21 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Danfo&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/navstyle.css">
-    <title>Document</title>
+  <link rel="stylesheet" href="/stylesheets/registerstyle.css">
+    
 </head>
 <body>
     <%- include("nav") %>
-    <form action="/register" method="post">
-        <input type="text" placeholder="name" name="name">
-        <input type="text" placeholder="Username" name="username">
-        <input type="password" placeholder="Password" name="password">
-        <input type="email" placeholder="Email Address" name="email">
-        <input type="number" placeholder="Mobile Number" name="mobile">
-        <input type="submit" placeholder="SUBMIT">
-    </form>
+    <div class="container">
+    <div id="signupForm">
+        
+        <form action="/register" method="post" class="form-group">
+            <h2>Sign Up</h2>
+            <br>
+            <label for="signupName">Full Name:</label>
+            <input type="text" id="signupName" placeholder="Enter your full name" name="name" required>
+            <br>
+            <br>
+            <label for="signupUsername">Username</label>
+            <input type="text" id="signupUsername" placeholder="Enter your Username" name="username" required>
+            <br>
+            <br>
+            <label for="signupEmail">Email:</label>
+            <input type="email" id="signupEmail" placeholder="Enter your email" name="email" required>
+            <br>
+            <br>
+            <label for="signupPassword">Password:</label>
+            <input type="password" id="signupPassword" placeholder="Enter your password" name="password" required>
+            <br>
+            <br>
+            <br>
+            <input type="submit" class="btn" onclick="signup()" placeholder="SIGN UP">
+            <a href="/login" class="logredirect">Already have an account? Log In</a>
+        </form>
+    </div>
+</div>
+<script>
+    function signup() {
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+
+            if (name && email && password) {
+                alert(`Account created for: ${name}`);
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+</script>
 </body>
 </html>

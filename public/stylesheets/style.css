@@ -1,8 +1,63 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+.main{
+  margin: 0;
+}
+.main img{
+  width: 100%;
+}
+.desc1, .desc2, .desc3, .desc4{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 150vh;
+  width: 100%;
+}
+h1{
+  text-align: center;
+  font-size: 12vh;
+}
+.desc2, .desc4{
+  background-color: black;
+  color: white;
+}
+.log{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.log button{
+  font-size: 5vh;
+  margin: 4vh;
+  padding-left: 8vh;
+  padding-right: 8vh;
+  padding-top: 1.1vh;
+  padding-bottom: 1.1vh;
+  border-style: solid;
+  border-radius: 5px;
+  background-color: white;
+}
+.log button:hover{
+  background-color: black;
+  color: white;
+  transition: ease 0.2s;
+  cursor: pointer;
+}
+.signup, .signin{
+  flex-basis: 40%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.signin h1, .signup h1{
+  font-size: 6vh;
 }

@@ -53,7 +53,6 @@ router.post("/login",
     const userdata = new userModel({
       name: name,
       username: req.body.username,
-      number: req.body.mobile,
       email: req.body.email
     });
     userModel.register(userdata, req.body.password)
@@ -98,7 +97,8 @@ router.post("/login",
 
 
 router.get("/upload", isLoggedIn, function (req, res){
-  res.render("upload");
+  const name = req.user.name;
+  res.render("upload", {name : name});
 });
 
 
@@ -144,7 +144,7 @@ router.get("/search", isLoggedIn, async function (req, res){
 
     const tagser = req.query.tagser?.split(",").map(tag => tag.trim().toLowerCase());
     const pictures = await pics.find({tags: { $regex: new RegExp(tagser, 'i') }});
-    res.render("ser", {pictures: pictures})
+    res.render("serresult", {pictures: pictures})
   }
   catch(err){
     console.error("Error in searching and displaying", err);

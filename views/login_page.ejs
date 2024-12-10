@@ -8,13 +8,42 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Danfo&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/navstyle.css">
+  <link rel="stylesheet" href="/stylesheets/loginstyle.css">
 </head>
 <body>
     <%- include("nav") %>
-    <form action="/login" method="post" class="logpag">
-        <input type="text" placeholder="Username" name="username">
-        <input type="password" placeholder="Password" name="password">
-        <input type="submit" placeholder="SUBMIT">
-    </form>
+    <div class="container">
+        <div id="loginForm">
+            <form action="/login" method="post" class="form-group">
+                <h2>Twitch Stars - Login</h2>
+                <br>
+                <label for="loginUsername">Username:</label>
+                <input type="text" id="loginUsername" placeholder="Enter your username" name="username" required>
+                <br>
+                <br>
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password" name="password" required>
+                <br>
+                <br>
+                <br>
+            <input type="submit" class="btn" onclick="login()" placeholder="SUBMIT">
+            <br>
+            <a href="/register" class="signredirect">Don't have an account? Sign Up</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (email && password) {
+                alert(`Logged in as: ${email}`);
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+    </script>
 </body>
 </html>

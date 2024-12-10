@@ -1,0 +1,106 @@
+body{
+    background-image: url("/images/TWITCH\ STARS\ \(2\).png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.container {
+    max-width: 400px;
+    height: 400%;
+    width: 100%;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 100px auto; /* To account for the navbar */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 170%;
+}
+
+label{
+    font-size: 120%;
+}
+
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input[type = text], .form-group input[type = password], .form-group input[type = email]{
+    width: 90%;
+    height: 4vh;
+    padding: 4px;
+    padding-left: 15px;
+    border: 1px solid #00000076;
+    border-radius: 4px;
+    font-size: 18px;
+}
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.toggle-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #007BFF;
+    cursor: pointer;
+}
+
+.toggle-link:hover {
+    text-decoration: underline;
+}
+
+#signupForm {
+    font-family: "Dosis", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.logredirect {
+    position: relative;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    margin: 20px auto;
+    color: #007BFF;
+    cursor: pointer;
+}
+
+.logredirect::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -30%;
+    height: 10%;
+    width: 0;
+    background-color: #007BFF;
+    transition: width 0.5s ease;
+}
+
+
+
+.logredirect:hover::after {
+    width: 100%;
+}
