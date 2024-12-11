@@ -24,10 +24,11 @@ app.set('view engine', 'ejs');
 
 
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'sprraa', // Use a strong secret in production
+  secret: 'sprraa', // Use a strong secret in production
   resave: false,
   saveUninitialized: false,
   cookie: { secure: process.env.NODE_ENV === 'production' }, // Use secure cookies in production
+  httpOnly: true,
   store: MongoStore.create({
     mongoUrl: process.env.MONGO_URI, // Replace with your MongoDB connection string
     collectionName: 'sessions', // Specify the collection where sessions will be stored
