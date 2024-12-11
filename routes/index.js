@@ -56,9 +56,7 @@ router.get("/login", function(req, res){
 
 router.post("/login", 
   passport.authenticate("local", {successRedirect: "/feed" ,failureRedirect: "/login"}),
-   function(req, res, next) {
-    res.redirect("/feed");
-  });
+   );
 
 
   router.get("/register", function(req, res) {
