@@ -5,6 +5,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require("express-session");
+const MongoStore = require('connect-mongo');
+const mongoose = require('mongoose');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users').user;
@@ -19,11 +22,18 @@ connectDB();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+
 app.use(session({
+  secret: process.env.SESSION_SECRET || 'sprraa', // Use a strong secret in production
   resave: false,
   saveUninitialized: false,
-  secret: "sprraa2Twitchstars"
+  cookie: { secure: process.env.NODE_ENV === 'production' }, // Use secure cookies in production
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI, // Replace with your MongoDB connection string
+    collectionName: 'sessions', // Specify the collection where sessions will be stored
+  })
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.serializeUser(usersRouter.serializeUser());
