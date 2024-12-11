@@ -7,9 +7,31 @@ const pics = require("./users").pics;
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 passport.use(userModel.createStrategy());
+const cloudinary = require('cloudinary').v2;
+require('dotenv').config();
 
 
-const storage = multer.diskStorage({
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
+});
+
+
+const storage = multer.memoryStorage();
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image/')) {
+    cb(null, true);  // Accept the file
+  } else {
+    cb(new Error('Only image files are allowed'), false);  // Reject non-image files
+  }
+};
+
+const upload = multer({ storage: storage, fileFilter : fileFilter });
+
+/* const storage = multer.diskStorage({
   destination: function (req, res, cb) {
       cb (null, 'public/uploads/');
   },
@@ -18,8 +40,8 @@ const storage = multer.diskStorage({
       cb(null, uniqueFilename);
   }
 });
+const upload = multer({storage : storage});*/
 
-const upload = multer({storage : storage});
 
 
 router.get('/', function(req, res, next) {
@@ -33,9 +55,9 @@ router.get("/login", function(req, res){
 });
 
 router.post("/login", 
-  passport.authenticate("local", {successRedirect: "/feed",failureRedirect: "/login"}),
+  passport.authenticate("local", {failureRedirect: "/login"}),
    function(req, res, next) {
-    
+    res.redirect("/feed");
   });
 
 
@@ -68,32 +90,19 @@ router.post("/login",
     }
   }
   catch(err){
-        res.status(500).send("An error occured");
+      res.status(500).send("An error occured");
   }
   });
 
 
 
-
-
-
-  router.get("/profile", isLoggedIn ,async function(req, res){
-    //const name = req.user.name;
-    //const username = req.user.username;
-    //res.render("profile_page",{name: name, username: username, phone: req.user.number, email: req.user.email, profile: req.user.profile} );
-    //userdata = {profile: req.body.picchng};
-    res.send("Profile");
+router.get("/logout", isLoggedIn ,function (req, res, next){
+  const name = req.user.name;
+  req.logout(function(err){
+    if(err) {return next(err);}
+    res.render("loggedout", {name : name});
   });
-
-
-
-  router.get("/logout", function (req, res, next){
-    req.logout(function(err){
-      if(err) {return next(err);}
-      res.redirect("/login");
-    });
-  });
-
+});
 
 
 router.get("/upload", isLoggedIn, function (req, res){
@@ -104,11 +113,47 @@ router.get("/upload", isLoggedIn, function (req, res){
 
 router.post("/upload", isLoggedIn, upload.single('picture'), async function(req, res) {
 try{
-  //const newpic = '/uploads/' + req.file.filename;
-  const newpics = new pics({filename : req.file.filename, tags : req.body.tags.split(",").map(tag => tag.trim().toLowerCase())});
+
+  const uploadStream = await cloudinary.uploader.upload_stream({
+    public_id: uuidv4(),
+    resource_type: "auto",
+  }, async (err, uploadResult) =>{
+  if(err){
+    console.error("Error uploading picture:", err);
+        return res.status(500).send("Error uploading picture.");
+  }
+
+  console.log("Upload result:", uploadResult);
+
+  const tags = req.body.tags.split(",").map(tag => tag.trim().toLowerCase());
+  if (tags.length === 0) {
+    return res.status(400).send("Tags cannot be empty.");
+  }
+  const newpics = new pics({filename : uploadResult.secure_url, tags : tags});
+  await newpics.save()
+  .then(() => {
+    res.render("uploaded");
+  }).catch((err) => {
+    console.error("Error saving picture", err);
+    res.status(500).send("Error saving picture to database.");
+  });
+  
+
+  router.get("/uploaded", isLoggedIn, function (req, res){
+    res.render("uploaded");
+  });
+  
+  /*const newpics = new pics({filename : req.file.filename, tags : req.body.tags.split(",").map(tag => tag.trim().toLowerCase())});
   await newpics.save();
-  res.send("Uploaded successfully");
-}catch(err){
+  res.render("uploaded");*/
+
+});
+uploadStream.end(req.file.buffer);
+}
+catch(err){
+  if (err instanceof multer.MulterError) {
+    return res.status(400).send("Only image files are allowed.");
+  }
   console.error("Error uploading pic",err);
   res.status(500).send("Internal Server Error");
 }
@@ -116,11 +161,7 @@ try{
 
 
 
-
-
-
-  router.get("/feed", isLoggedIn ,async function (req, res){
-
+router.get("/feed", isLoggedIn ,async function (req, res){
 try{
   const pictures = await pics.find();
   console.log(pictures);
@@ -130,12 +171,7 @@ catch(err){
   console.error("Error displaying pics",err);
   res.status(500).send("Internal Server Error");
 }
-
-
-
-    //res.send("Feed");
   });
-
 
 
 
@@ -151,12 +187,6 @@ router.get("/search", isLoggedIn, async function (req, res){
     res.status(500).send("Internal Server Error");
   }
 })
-
-
-
-
-
-
 
 
   function isLoggedIn (req, res, next) {

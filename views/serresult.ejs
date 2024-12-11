@@ -17,7 +17,7 @@
     <div class="serfeed">
         <% pictures.forEach(pics => {%>
             <div class="inpic">
-                <img src="/uploads/<%= pics.filename %>" alt="Uploaded pics">
+                <img src="<%= pics.filename %>" alt="Uploaded pics" loading="lazy">
             </div>
         <% }) %>
     </div>

@@ -1,8 +1,23 @@
+require('dotenv').config();
 var express = require('express');
 var router = express.Router();
 const mongoose = require("mongoose");
 const plm = require("passport-local-mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/twitch_stars_users_data");
+
+mongoose.set('strictQuery', false);
+
+const connectDB = async () => {
+  try{
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB Connected");
+  }
+  catch(error){
+    console.log("Error connecting to MongoDB: ", error);
+    process.exit(1);
+  }
+}
+
+connectDB();
 
 
 
@@ -11,14 +26,6 @@ const user_schema = mongoose.Schema ({
   username: String,
   email : String,
   password: String
-  /*pics: [
-    {
-    date: { type: Date, default: Date.now },
-    url: String,
-    username: String,
-    picid: String
-  }
-]*/
 })
 
 
@@ -31,5 +38,10 @@ const pictureSchema = mongoose.Schema({
 
 
 user_schema.plugin(plm);
-module.exports.user = mongoose.model("user",user_schema);
-module.exports.pics = mongoose.model("pics",pictureSchema);
+
+
+module.exports = {
+  user: mongoose.model("user", user_schema),
+  pics: mongoose.model("pics", pictureSchema),
+  connectDB, // Export the connectDB function
+};

@@ -17,9 +17,36 @@
     <div class="feed">
         <% pictures.forEach(pics => {%>
             <div class="inpic">
-                <img src="/uploads/<%= pics.filename %>" alt="Uploaded pics">
+                <img src="<%= pics.filename %>" alt="Uploaded pics" loading="lazy">
             </div>
         <% }) %>
     </div>
+    <div id="loadingSpinner" style="display:block;"></div> <!-- Initially visible -->
+    <script>
+        // Show the loading spinner when the upload starts
+        function showLoadingSpinner() {
+          document.getElementById('loadingSpinner').style.display = 'block';
+        }
+      
+        // Hide the loading spinner once the upload or feed loading is complete
+        function hideLoadingSpinner() {
+          document.getElementById('loadingSpinner').style.display = 'none';
+        }
+
+
+        // Function to hide spinner when images are fully loaded
+  const images = document.querySelectorAll('img');
+  let imagesLoaded = 0;
+
+  images.forEach(img => {
+    img.onload = () => {
+      imagesLoaded++;
+      if (imagesLoaded === images.length) {
+        document.getElementById('loadingSpinner').style.display = 'none';
+      }
+    };
+  });
+      </script>
+      
 </body>
 </html>

@@ -11,6 +11,7 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="blurcontainer">
     <%- include("nav") %>
     <!--<form id="uplo" action="/upload" method="post" enctype="multipart/form-data">
         <input name="picture" type="file" id="uploadpic">
@@ -40,15 +41,52 @@
         <div id="preview"></div>
     </form>
 </div>
+</div>
+<div id="loadingSpinner" style="display:none;"></div> <!-- Initially visible -->
+
+
     <script>
+  // Show the loading spinner when the upload starts
+  function showLoadingSpinner() {
+    document.getElementById('loadingSpinner').style.display = 'block';
+    document.querySelector('.blurcontainer').classList.add('blurred');
+  }
+
+  // Hide the loading spinner once the upload or feed loading is complete
+  function hideLoadingSpinner() {
+    document.getElementById('loadingSpinner').style.display = 'none';
+    document.querySelector('.blurcontainer').classList.remove('blurred');
+  }
+
+
+
+  // Function to hide spinner when images are fully loaded
+  /*const images = document.querySelectorAll('img');
+  let imagesLoaded = 0;
+
+  images.forEach(img => {
+    img.onload = () => {
+      imagesLoaded++;
+      if (imagesLoaded === images.length) {
+        document.getElementById('loadingSpinner').style.display = 'none';
+      }
+    };
+  });*/
+
+
+
+
+
         const fileInput = document.getElementById('fileInput');
         const previewContainer = document.getElementById('preview');
         const uploadLabel = document.querySelector('.upload-label');
+        const uploadForm = document.querySelector('form');
 
         // Handle file input change
         fileInput.addEventListener('change', () => {
             const files = fileInput.files;
             previewContainer.innerHTML = ''; // Clear previous previews
+        
 
             Array.from(files).forEach(file => {
                 if (file.type.startsWith('image/')) {
@@ -78,6 +116,10 @@
                         previewDiv.appendChild(img);
                         previewDiv.appendChild(deleteButton);
                         previewContainer.appendChild(previewDiv);
+
+
+                        
+
 
                         const tagsSection = document.createElement('div');
                         tagsSection.classList.add('tagsSection');
@@ -116,6 +158,41 @@
                 }
             });
         });
+        console.log("Form submitted"); 
+        uploadForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            console.log("Form data:", new FormData(uploadForm)); 
+            const formData = new FormData(uploadForm);  // Create FormData object to hold the form data
+            showLoadingSpinner();
+// Use fetch API to submit the form data via AJAX (POST request)
+fetch('http://localhost:3000/upload', {
+    method: 'POST',
+    body: formData,
+})
+.then(response => {
+    console.log("Response received:", response);
+    if (response.ok) {
+        // Handle successful response
+        hideLoadingSpinner();  // Hide spinner once upload is complete
+        return response.text();  // Redirect to another page or reload the page (use your actual redirection URL here)
+    } else {
+        // Handle error if the request fails
+        hideLoadingSpinner();  // Hide spinner if there's an error
+        alert('Upload failed!');  // Show a failure message
+    }
+})
+.then(data => {
+    console.log(data); // Log data from response for debugging
+      hideLoadingSpinner(); // Hide spinner after success
+      window.location.href = '/uploaded';
+      })
+.catch(error => {
+    console.error("Error:", error);
+    // Handle network errors or other unexpected errors
+    hideLoadingSpinner();  // Hide spinner
+    alert('An error occurred: ' + error);
+});
+  });
     </script>
 </body>
 </html>
