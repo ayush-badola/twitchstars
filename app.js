@@ -35,6 +35,26 @@ app.use(session({
   })
 }));
 
+
+const cors = require('cors');
+
+// Whitelist allowed origins
+const allowedOrigins = ['https://twitchstars.onrender.com'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // Allow cookies and session data
+}));
+
+
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.serializeUser(usersRouter.serializeUser());
