@@ -27,7 +27,7 @@ app.use(session({
   secret: 'sprraa', // Use a strong secret in production
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: process.env.NODE_ENV === 'production' }, // Use secure cookies in production
+  cookie: { secure: false }, // Use secure cookies in production
   httpOnly: true,
   store: MongoStore.create({
     mongoUrl: process.env.MONGO_URI, // Replace with your MongoDB connection string
