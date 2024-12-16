@@ -25,7 +25,9 @@ const user_schema = mongoose.Schema ({
   name: String,
   username: String,
   email : String,
-  password: String
+  password: String,
+  isVerified: { type: Boolean, default: false },
+  emailToken: { type: String },
 })
 
 

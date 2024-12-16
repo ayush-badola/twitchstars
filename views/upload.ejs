@@ -14,11 +14,6 @@
 <body>
     <div class="blurcontainer">
     <%- include("nav") %>
-    <!--<form id="uplo" action="/upload" method="post" enctype="multipart/form-data">
-        <input name="picture" type="file" id="uploadpic">
-        <input name="tags" type="text" id="uploatag">
-        <button type="submit">Upload</button>
-    </form>-->
     <div class="containerwrapper">
     <form action="/upload" method="post" enctype="multipart/form-data" class="container">
         <h1>Hey <%= name%>!</h1>
@@ -58,23 +53,6 @@
     document.getElementById('loadingSpinner').style.display = 'none';
     document.querySelector('.blurcontainer').classList.remove('blurred');
   }
-
-
-
-  // Function to hide spinner when images are fully loaded
-  /*const images = document.querySelectorAll('img');
-  let imagesLoaded = 0;
-
-  images.forEach(img => {
-    img.onload = () => {
-      imagesLoaded++;
-      if (imagesLoaded === images.length) {
-        document.getElementById('loadingSpinner').style.display = 'none';
-      }
-    };
-  });*/
-
-
 
 
 

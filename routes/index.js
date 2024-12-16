@@ -31,16 +31,6 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ storage: storage, fileFilter : fileFilter });
 
-/* const storage = multer.diskStorage({
-  destination: function (req, res, cb) {
-      cb (null, 'public/uploads/');
-  },
-  filename: function (req, res, cb) {
-      const uniqueFilename = uuidv4();
-      cb(null, uniqueFilename);
-  }
-});
-const upload = multer({storage : storage});*/
 
 
 
@@ -64,23 +54,25 @@ router.post("/login",
     
   });
 
+  const { sendVerificationEmail } = require("./emailsender");
+  const jwt = require('jsonwebtoken'); 
+
   router.post("/register", async function(req, res, next) {
     try{
     const name = (req.body.name).charAt(0).toUpperCase()+(req.body.name).slice(1);
     const email = req.body.email;
-    const exist = await userModel.findOne({email: email});
+    const exist = await userModel.findOne({email: email}||{username: username});
     if(!exist){
     const userdata = new userModel({
       name: name,
       username: req.body.username,
-      email: req.body.email
+      email: req.body.email,
+      emailToken: jwt.sign({ email }, 'process.env.SECRET_KEY', { expiresIn: '1h' })
     });
     userModel.register(userdata, req.body.password)
-  .then(function() {
-    passport.authenticate("local")(req, res, function () {
-      res.redirect("/feed");
-    })
-  
+  .then(async function() {
+    await sendVerificationEmail(userdata, userdata.emailToken);
+        res.render('verisent', {name:userdata.name, email:userdata.email});
   });
     }
     else{
@@ -91,6 +83,45 @@ router.post("/login",
       res.status(500).send("An error occured");
   }
   });
+
+
+
+
+
+
+
+
+
+  router.get('/verifyemail', async function (req, res) {
+    const { token } = req.query;
+  
+    try {
+      const decoded = jwt.verify(token, 'process.env.SECRET_KEY'); // Verify token
+      const user = await userModel.findOne({ email: decoded.email });
+  
+      if (user && !user.isVerified) {
+        user.isVerified = true;
+        user.emailToken = null; // Clear the token after verification
+        await user.save();
+        res.render('verified', {name:user.name, email:user.email}); // A page saying "Email Verified"
+      } else {
+        res.render('verifail', {name:user.name, email:user.email}); // A page saying "Invalid or Expired Token"
+      }
+    } catch (err) {
+      console.error('Error during email verification:', err);
+      res.render('verifail', {name:user.name, email:user.email});
+    }
+  });
+  
+
+
+
+
+
+
+
+
+
 
 
 
@@ -140,10 +171,6 @@ try{
   router.get("/uploaded", isLoggedIn, function (req, res){
     res.render("uploaded");
   });
-  
-  /*const newpics = new pics({filename : req.file.filename, tags : req.body.tags.split(",").map(tag => tag.trim().toLowerCase())});
-  await newpics.save();
-  res.render("uploaded");*/
 
 });
 uploadStream.end(req.file.buffer);
@@ -188,9 +215,14 @@ router.get("/search", isLoggedIn, async function (req, res){
 
 
   function isLoggedIn (req, res, next) {
-    if(req.isAuthenticated()) {return next();}
-    else {
-    res.redirect("/login");}
+    if (req.isAuthenticated() && req.user.isVerified) {
+      return next();
+    } else if (req.isAuthenticated() && !req.user.isVerified) {
+      res.render('verinow', {name:req.user.name, email:req.user.email}); // A page saying "Verify your email first"
+    } else {
+      req.session.returnTo = req.originalUrl;
+      res.redirect('/login');
+    }
   }
 
 module.exports = router;
