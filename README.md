@@ -3,9 +3,10 @@
 ### Welcome to the Twitch Stars repository! 🙏
 This is a website where user holds the content.
 This site contains exclusive photos of RKGIT college, for the students and by the students.
+### Site live on : `https://twitchstars.onrender.com/`
 * Tech-stacks included ✍: 
 	* HTML
-  * CSS  
+  	* CSS  
 	* JavaScript
  	* NodeJS
 	* ExpressJS
@@ -14,7 +15,7 @@ This site contains exclusive photos of RKGIT college, for the students and by th
  	* Passport Local Manager
   * Cloudinary
 ## To set up the project locally :desktop_computer:
-### To clone the project from git hub 	:octocat:
+### To clone the project from git hub 
 1. Open any command line and change the directory to the folder where you want to set up the code
 2. Copy and paste the following code in the command line :
 	`https://github.com/ayush-badola/twitchstars.git`
