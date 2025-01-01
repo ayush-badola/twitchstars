@@ -86,12 +86,6 @@ router.post("/login",
 
 
 
-
-
-
-
-
-
   router.get('/verifyemail', async function (req, res) {
     const { token } = req.query;
   
@@ -113,16 +107,6 @@ router.post("/login",
     }
   });
   
-
-
-
-
-
-
-
-
-
-
 
 
 router.get("/logout", isLoggedIn ,function (req, res, next){

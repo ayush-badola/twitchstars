@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
 
   async function sendVerificationEmail(user, token) {
     const mailOptions = {
-      from: 'process.env.EMAIL_ID',
+      from: process.env.EMAIL_ID,
       to: user.email,
       subject: 'Twitch Stars - Verification',
       html: `
