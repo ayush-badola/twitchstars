@@ -173,7 +173,6 @@ catch(err){
 router.get("/feed", isLoggedIn ,async function (req, res){
 try{
   const pictures = await pics.find();
-  console.log(pictures);
   res.render("feed", {pictures: pictures});
 }
 catch(err){
