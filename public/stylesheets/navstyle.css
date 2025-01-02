@@ -51,7 +51,7 @@ body{
     box-sizing: content-box;
 }
 
-@media only screen and (min-width: 380px){
+@media only screen and (min-width: 780px){
     .lines{
       display: block;
       width: 5vw;
