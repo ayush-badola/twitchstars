@@ -4,30 +4,30 @@
     align-items: center;
     background-color: #ffffff;
     flex-direction: column;
-    height: 70vh;
+    height: 35vw;
     font-family: "Inter", sans-serif;
     font-weight: 600;
     font-style: normal;
     font-optical-sizing: auto;
 }
 .container2{
-    margin-top: 4vh;
+    margin-top: 2vw;
 }
 .reglink{
-    margin-right: 2vh;
+    margin-right: 1vw;
 }
 .siginlink{
-    margin-left: 2vh;
+    margin-left: 1vw;
 }
 .container a{
-    padding-left: 3vh;
-    padding-right: 3vh;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
     border-style: solid;
     text-decoration: none;
-    font-size: 3vh;
-    border-radius: 5px;
+    font-size: 1.5vw;
+    border-radius: 5vw;
     color: black;
     border-color: black;
 }

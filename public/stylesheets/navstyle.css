@@ -4,13 +4,13 @@ body{
 .navul{
     list-style: none;
     display: block;
-    padding: 2vh;
+    padding: 1vw;
     background-color: black;
     margin: 0;
 }
 .navul li{
     display: inline-block;
-    margin-right: 2vh;
+    margin-right: 1vw;
 }
 .navul a{
     font-family: "Danfo", serif;
@@ -22,22 +22,58 @@ body{
     text-decoration: none;
     color: white;
     background-color: black;
-    padding: 2vh;
-    border-radius: 1vh;
+    padding: 1vw;
+    border-radius: 0.5vw;
 }
 .rig{
     float: right;
 }
 .rig a{
-    font-size: 3.5vh;
+    font-size: 1.8vw;
     transition: ease-in 0.2s;
 }
 .rig a:hover{
     background-color: white;
     color: black;
     transition: ease-in 0.2s;
-    padding: 2vh;
+    padding: 1vw;
 }
 .lef{
-    font-size: 4vh;
+    font-size: 2vw;
+}
+.lines{
+    display: none;
+    width: 12vw;
+    height: 12vw;
+    background-color: white;
+    border-radius: 50%;
+    padding: 2.7vw;
+    box-sizing: content-box;
+}
+
+@media only screen and (max-width: 768px){
+    .lines{
+        display: block;
+        width: 5vw;
+    height: 5vw;
+    float: left;
+    }
+    .navul{
+      text-align: center;
+      display: block;
+    }
+    .navul li:not(.logo) {
+      display: none;
+  }
+  .logo {
+    font-size: 8vw;
+    margin: auto;
+    display: inline-block;
+    text-align: center;
+}
+.navul li {
+  display: inline-block;
+  margin: 0 1vh;
+}
+
 }

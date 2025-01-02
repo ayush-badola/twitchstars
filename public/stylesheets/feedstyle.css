@@ -1,14 +1,14 @@
 .feed {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    margin-left: 3vh;
-    margin-right: 3vh;
+    gap: 20vw;
+    margin-left: 1.5vw;
+    margin-right: 1.5vw;
 }
 .feed img {
     width: 100%;
-    height: 200px;
+    height: 200vw;
     object-fit: cover;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+    border: 2vw solid #ddd;
+    border-radius: 8vw;
 }

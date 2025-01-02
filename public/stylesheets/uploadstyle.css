@@ -6,10 +6,10 @@ body.blurred {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50px;
-    height: 50px;
-    border: 5px solid #f3f3f3; /* Light gray background */
-    border-top: 5px solid #3498db; /* Blue color for the spinner */
+    width: 50vw;
+    height: 50vw;
+    border: 5vw solid #f3f3f3; /* Light gray background */
+    border-top: 5vw solid #3498db; /* Blue color for the spinner */
     border-radius: 50%;
     animation: spin 1s linear infinite;
     z-index: 9999;
@@ -38,17 +38,17 @@ body.blurred {
 .container {
     font-family: Arial, sans-serif;
     background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 700px;
+    padding: 20vw;
+    border-radius: 8vw;
+    box-shadow: 0 4vw 8vw rgba(0, 0, 0, 0.2);
+    max-width: 700vw;
     width: 100%;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.886);
     color: white;
     box-sizing: border-box;
     padding-bottom: 2%;
-    margin-top: 4vh;
+    margin-top: 2vw;
 }
 ul{
     list-style: none;
@@ -58,7 +58,7 @@ li{
     font-weight: 600;
 }
 h2 {
-    margin-bottom: 20px;
+    margin-bottom: 20vw;
     color: #333;
 }
 input[type="file"]{
@@ -66,10 +66,10 @@ input[type="file"]{
 }
 .upload-label{
     display: inline-block;
-    padding: 10px 20px;
+    padding: 10vw 20vw;
     background-color: #007BFF;
     color: white;
-    border-radius: 5px;
+    border-radius: 5vw;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -77,20 +77,20 @@ input[type="file"]{
     background-color: #0056b3;
 }
 #preview {
-    margin-top: 20px;
+    margin-top: 20vw;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 10vw;
     justify-content: center;
     text-align: center;
     align-items: center;
 }
 .image-preview {
     position: relative;
-    width: 120px;
-    height: 120px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    width: 120vw;
+    height: 120vw;
+    border: 1vw solid #ddd;
+    border-radius: 8vw;
     overflow: hidden;
 }
 .image-preview img {
@@ -100,17 +100,17 @@ input[type="file"]{
 }
 .image-preview button {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 5vw;
+    right: 5vw;
     background-color: rgba(255, 0, 0, 0.8);
     color: white;
     border: none;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 20vw;
+    height: 20vw;
     cursor: pointer;
-    font-size: 12px;
-    line-height: 20px;
+    font-size: 12vw;
+    line-height: 20vw;
     text-align: center;
 }
 .tagsLabel{
@@ -124,22 +124,22 @@ input[type="file"]{
 .tagsInput{
     display: block;
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 10vw;
+    border: 1vw solid #ccc;
+    border-radius: 5vw;
     box-sizing: border-box;
-    font-size: 16px;
-    margin-top: 5px;
+    font-size: 16vw;
+    margin-top: 5vw;
     box-sizing: border-box;
     padding-bottom: 5%;
 }
 .submitButton{
-    margin-top: 2vh;
-    padding: 2vh 5vh 2vh 5vh;
+    margin-top: 1vw;
+    padding: 1vw 2.5vw 1vw 2.5vw;
     font-size: larger;
     background-color: #007BFF;
     color: white;
-    border-radius: 5px;
+    border-radius: 5vw;
     
     border: none;
 }

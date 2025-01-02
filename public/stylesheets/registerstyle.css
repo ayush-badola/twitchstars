@@ -5,19 +5,19 @@ body{
 }
 
 .container {
-    max-width: 400px;
+    max-width: 400vw;
     height: 400%;
     width: 100%;
     background: white;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    margin: 100px auto; /* To account for the navbar */
+    padding: 20vw;
+    box-shadow: 0 4vw 6vw rgba(0, 0, 0, 0.1);
+    border-radius: 8vw;
+    margin: 100vw auto; /* To account for the navbar */
 }
 
 h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 20vw;
     font-size: 170%;
 }
 
@@ -27,31 +27,31 @@ label{
 
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 15vw;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 5vw;
 }
 
 .form-group input[type = text], .form-group input[type = password], .form-group input[type = email]{
     width: 90%;
-    height: 4vh;
-    padding: 4px;
-    padding-left: 15px;
-    border: 1px solid #00000076;
-    border-radius: 4px;
-    font-size: 18px;
+    height: 2vw;
+    padding: 4vw;
+    padding-left: 15vw;
+    border: 1vw solid #00000076;
+    border-radius: 4vw;
+    font-size: 18vw;
 }
 .btn {
     width: 100%;
-    padding: 10px;
+    padding: 10vw;
     background-color: #007BFF;
     color: white;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 4vw;
+    font-size: 16vw;
     cursor: pointer;
 }
 
@@ -62,7 +62,7 @@ label{
 .toggle-link {
     display: block;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 10vw;
     color: #007BFF;
     cursor: pointer;
 }
@@ -83,7 +83,7 @@ label{
     text-decoration: none;
     text-align: center;
     display: inline-block;
-    margin: 20px auto;
+    margin: 20vw auto;
     color: #007BFF;
     cursor: pointer;
 }
