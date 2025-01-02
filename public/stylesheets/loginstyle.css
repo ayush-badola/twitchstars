@@ -92,3 +92,11 @@ label{
 .signredirect:hover::after {
     width: 100%;
 }
+
+
+@media only screen and (max-width: 780px){
+    .container {
+        max-width: 300px;
+        margin: 90px 0px 0px 23px;
+    }
+}

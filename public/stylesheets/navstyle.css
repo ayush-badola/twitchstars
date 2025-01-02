@@ -54,24 +54,27 @@ body{
 @media only screen and (max-width: 780px){
     .lines{
       display: block;
-      width: 5vw;
-      height: 5vw;
+      width: 8vw;
+      height: 8vw;
       float: left;
     }
     .navul{
       text-align: center;
       display: block;
+      padding-top: 20px;
+      height: 20vw;
     }
     .navul li:not(.logo) {
       display: none;
   }
   .logo {
-    font-size: 8vw;
+    font-size: 18vw;
     margin: auto;
     display: inline-block;
     text-align: center;
 }
 .navul li {
+    font-size: 4.5vh;
   display: inline-block;
   margin: 0 1vh;
 }
