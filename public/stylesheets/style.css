@@ -1,5 +1,5 @@
 body {
-  font: 14vw "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 2vw "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -17,12 +17,12 @@ a {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 75vw;
+  height: 70vw;
   width: 100%;
 }
 h1{
   text-align: center;
-  font-size: 6vw;
+  font-size: 5vw;
 }
 .desc2, .desc4{
   background-color: black;
