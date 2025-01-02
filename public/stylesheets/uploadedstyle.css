@@ -4,7 +4,7 @@
     align-items: center;
     background-color: #ffffff;
     flex-direction: column;
-    height: 35vw;
+    height: 70vh;
     font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 600;
@@ -12,14 +12,14 @@
 }
 .container a{
     
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
-    padding-top: 0.5vw;
-    padding-bottom: 0.5vw;
+    padding-left: 3vh;
+    padding-right: 3vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
     border-style: solid;
     text-decoration: none;
-    font-size: 1.5vw;
-    border-radius: 5vw;
+    font-size: 3vh;
+    border-radius: 5px;
     color: black;
     border-color: black;
 }

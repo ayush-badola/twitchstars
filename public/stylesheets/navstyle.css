@@ -53,10 +53,10 @@ body{
 
 @media only screen and (max-width: 768px){
     .lines{
-        display: block;
-        width: 5vw;
-    height: 5vw;
-    float: left;
+      display: block;
+      width: 5vw;
+      height: 5vw;
+      float: left;
     }
     .navul{
       text-align: center;
