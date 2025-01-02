@@ -41,13 +41,13 @@ body.blurred {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 700px;
-    width: 100%;
+    max-width: 300vw;
+    width: 90%;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.886);
     color: white;
     box-sizing: border-box;
-    padding-bottom: 2%;
+    padding-bottom: 8%;
     margin-top: 4vh;
 }
 ul{
@@ -147,4 +147,11 @@ input[type="file"]{
     cursor: pointer;
     transition: background-color 0.3s;
     background-color: #0056b3;
+}
+
+@media only screen and (max-width: 780px){
+    ul{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }

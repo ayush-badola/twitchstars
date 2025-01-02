@@ -7,6 +7,8 @@ var logger = require('morgan');
 var session = require("express-session");
 const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
+// Whitelist allowed origins
+const allowedOrigins = ['https://twitchstars.onrender.com', 'http://localhost:3000'];
 
 
 var indexRouter = require('./routes/index');
@@ -36,19 +38,21 @@ app.use(session({
 }));
 
 
+
+
 const cors = require('cors');
 
-// Whitelist allowed origins
-const allowedOrigins = ['https://twitchstars.onrender.com'];
+
 
 app.use(cors({
-  origin: (origin, callback) => {
+  origin: '*'
+  /*(origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
-  },
+  }*/,
   credentials: true, // Allow cookies and session data
 }));
 

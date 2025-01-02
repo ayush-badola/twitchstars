@@ -144,7 +144,7 @@
             const formData = new FormData(uploadForm);  // Create FormData object to hold the form data
             showLoadingSpinner();
 // Use fetch API to submit the form data via AJAX (POST request)
-fetch('https://twitchstars.onrender.com/upload', {
+fetch('http://localhost:3000/upload', {
     method: 'POST',
     body: formData,
 })
