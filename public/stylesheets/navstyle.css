@@ -51,7 +51,7 @@ body{
     box-sizing: content-box;
 }
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 600px){
     .lines{
       display: block;
       width: 5vw;
