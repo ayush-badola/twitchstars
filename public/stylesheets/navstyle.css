@@ -5,6 +5,7 @@ body{
     list-style: none;
     display: block;
     padding: 1vw;
+    position: initial;
     background-color: black;
     margin: 0;
 }
@@ -50,6 +51,9 @@ body{
     padding: 2.7vw;
     box-sizing: content-box;
 }
+.sidebar{
+    display: none;
+}
 
 @media only screen and (max-width: 780px){
     .lines{
@@ -77,6 +81,39 @@ body{
     font-size: 4.5vh;
   display: inline-block;
   margin: 0 1vh;
+}
+.sidebar ul{
+    list-style: none;
+    display: block;
+}
+.sidebar li{
+    display: block;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    font-size: 14vw;
+}
+.sidebar a{
+    font-family: "Danfo", serif;
+    font-optical-sizing: auto;
+    font-weight:lighter;
+    font-style:normal;
+    font-variation-settings:
+    "ELSH" 0;
+    text-decoration: none;
+    font-size: 14vw;
+    color: black;
+}
+.sidebar{
+    display: block;
+    position: fixed;
+    height: 0;
+    width: 0;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.5s;
+    background-color: white;
 }
 
 }
